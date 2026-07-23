@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wealthos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wealthos
+      POSTGRES_PASSWORD: wealthos
+      POSTGRES_DB: wealthos_ai
+    ports:
+      - "5432:5432"
+    volumes:
+      - wealthos_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wealthos -d wealthos_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  wealthos_postgres_data:

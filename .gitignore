@@ -1,0 +1,4 @@
+.DS_Store
+*.log
+
+# See frontend/.gitignore and backend/.gitignore for stack-specific rules.
